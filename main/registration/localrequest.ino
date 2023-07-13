@@ -5,27 +5,28 @@
 
 const char* ssid = "hariharans";
 const char* password = "12345678";
-String phoneNumber = "+919360745166";
-String apiKey = "1717993";
-void sendMessage(String message){
-  String url = "http://api.callmebot.com/whatsapp.php?phone=" + phoneNumber + "&apikey=" + apiKey + "&text=" + urlEncode(message);
+String serverAddress = "http://192.168.123.96:8000/req"; // Replace with your server's IP address or hostname
+
+String sendMessage(String message){
+  String url = serverAddress + "?text=" + urlEncode(message); // Modify the URL to match your server's endpoint
   WiFiClient client;    
   HTTPClient http;
   http.begin(client, url);
+  String response;
   http.addHeader("Content-Type", "application/x-www-form-urlencoded");
-  int httpResponseCode = http.POST(url);
+  int httpResponseCode = http.GET(); // Send a GET request instead of POST
   if (httpResponseCode == 200){
-    Serial.print("Message sent successfully");
+    response = http.getString(); // Read the response content
+    Serial.println("Message sent successfully.");
   }
   else{
     Serial.println("Error sending the message");
-    Serial.print("HTTP response code: ");
+    Serial.println("HTTP response code: ");
     Serial.println(httpResponseCode);
   }
   http.end();
+  return response;
 }
-
-
 
 void setup() {
   Serial.begin(9600);
@@ -36,12 +37,14 @@ void setup() {
     Serial.print(".");
   }
   Serial.println("");
-  Serial.print("Connected to WiFi network with IP Address: ");
+  Serial.println("Connected to WiFi network with IP Address: ");
   Serial.println(WiFi.localIP());
-  sendMessage("Hello from ESP8266!");
 }
 
-
 void loop() {
-  
+  String id=sendMessage("id");
+  if(id!="-1"){
+    Serial.println(id);
+  }
+  delay(3000);
 }
