@@ -1,0 +1,25 @@
+/* Additional CSS modifications */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+    font-family: 'Open Sans', sans-serif;
+}
+
+#container {
+    text-align: center;
+    border: 2px solid #333;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #fff;
+    font-family: 'Open Sans', sans-serif;
+}
+
+#rep {
+    color: #333;
+    font-size: 24px;
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+}
