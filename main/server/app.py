@@ -1,7 +1,7 @@
 from flask import Flask,request,render_template
 from pymongo import MongoClient
 import socket
-from datetime import datetime
+import datetime
 
 hostname=socket.gethostname()
 
@@ -10,7 +10,14 @@ app = Flask(__name__)
 client = MongoClient('mongodb+srv://shariharan182003:asdf123%40ASDF@cluster1.h4nhum8.mongodb.net/')
 db = client['fingerprint']
 users = db['users']
-entry = db['entries']
+
+client1 = MongoClient('mongodb+srv://shariharan182003:asdf123%40ASDF@cluster1.h4nhum8.mongodb.net/')
+db1 = client['fingerprint']
+entry = db1['entries']
+
+client2 = MongoClient('mongodb+srv://shariharan182003:asdf123%40ASDF@cluster1.h4nhum8.mongodb.net/')
+db2 = client2['fingerprint']
+collection = db2['login_users']
 
 app.id=-1
 app.text=''
@@ -22,7 +29,31 @@ app.file='index.html'
 
 @app.route('/')
 def begin():
-    return render_template('begin.html')
+    return render_template('login.html')
+
+@app.route('/login', methods=['POST'])
+def login():
+    email = request.form.get('email')
+    password = request.form.get('pass')
+
+    print(email)
+    print(password)
+
+    # Perform authentication logic here
+    user = collection.find_one({'email': email, 'password': password})
+    print(user)
+    if user:
+        return render_template('login.html')  # Redirect to index page
+    else:
+        return render_template('login.html', error='Invalid email or password.')
+
+@app.route('/register',methods=['POST'])
+def register():
+    print('register')
+    email = request.form.get('email')
+    password = request.form.get('pass')
+    collection.insert_one({'email':email,'password':password})
+    return render_template('login.html')
 
 @app.route('/decide')
 def decide():
@@ -88,17 +119,15 @@ def fetch():
 def recg():
     app.recdata = request.args.get('text','') 
     temp = app.recdata.split(" ")
-    # print(temp)
-    # id=0
     if(temp[0]=="id"):
         id=int(temp[1])
         print(id)
-        current_datetime = datetime.now()
-        timestamp = current_datetime.timestamp()
-        document = {"time": timestamp, "id": id}
-    #     entry.insert_one(document)
-    # print(temp)
-    client.close()
+        current_datetime = datetime.datetime.now()
+        date = current_datetime.strftime("%Y-%m-%d")
+        time = current_datetime.strftime("%H:%M:%S") 
+        document = {"date":date, "time":time, "id": id}
+        entry.insert_one(document)
+    print(temp)
     return 'none'
 
 @app.route('/recgfetch',methods=['GET'])
