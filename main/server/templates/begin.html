@@ -1,28 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/interface.css') }}">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap" rel="stylesheet">
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/interface.css') }}"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap"
+      rel="stylesheet"
+    />
     <title>Interface</title>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <div class="cont">
-            <h1>Home Security System</h1>
-        </div>
-        <div class="cont">
-            <button id="register" class="button-64">Register</button>
-            <button id="recognize" class="button-64">Recognize</button>
-        </div>
-        <form action="http://192.168.123.96:8000/deciderender">
-            <input type="submit">
-        </form>
-        <script src="{{ url_for('static', filename='js/script1.js') }}"></script>
+      <div class="cont">
+        <h1>Home Security System</h1>
+      </div>
+      <div class="cont">
+        <button id="register" class="button-64">Register</button>
+        <button id="recognize" class="button-64">Recognize</button>
+      </div>
+      <form action="http://192.168.123.96:8000/deciderender">
+        <input type="submit" />
+      </form>
+      <h1 id="title">Last History</h1>
+      <table id="lasthistory"></table>
     </div>
-</body>
+    <script src="{{ url_for('static', filename='js/script1.js') }}"></script>
+  </body>
 </html>

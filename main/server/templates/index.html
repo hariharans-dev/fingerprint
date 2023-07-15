@@ -1,17 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}"/>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register Fingerprint</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='css/register_form.css') }}"
+    />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-</head>
-<body>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <h1>Fingerprint Registration</h1>
     <form action="http://192.168.123.96:8000/id_data" method="get">
-        Enter the id: <input name="id" type="text"><br>
-        Enter the name: <input name="name" type="text"><br>
-        <input type="submit">
+      <label for="id">Enter the id:</label>
+      <input name="id" type="text" /><br />
+      <label for="name">Enter the name:</label>
+      <input name="name" type="text" /><br />
+      <input type="submit" />
     </form>
-</body>
+  </body>
 </html>
