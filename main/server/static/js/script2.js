@@ -1,7 +1,7 @@
 $(document).ready(function() {
     setInterval(function() {
       $.ajax({
-        url: "/fetchdata",
+        url: "/recgfetch",
         type: "GET",
         success: function(response) {
             $('#rep').text(response)
@@ -10,6 +10,5 @@ $(document).ready(function() {
             console.error(error);
         }
       });
-    }, 500);
+    }, 1000);
 });
-
