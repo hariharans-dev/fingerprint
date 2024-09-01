@@ -1,8 +1,8 @@
-Fingerprint Recognition System
-Overview
+**Fingerprint Recognition System**
+*Overview*
 The Fingerprint Recognition System is a biometric security project designed to identify individuals based on their unique fingerprint patterns. This project leverages advanced image processing techniques and machine learning algorithms to ensure high accuracy and robustness in fingerprint matching.
 
-Features
+*Features*
 Fingerprint Enrollment: Users can securely enroll their fingerprints into the system database.
 Fingerprint Matching: Matches input fingerprints against stored templates using optimized matching algorithms.
 Secure Storage: Stores fingerprint data in a secure and encrypted format.
